@@ -2,24 +2,24 @@
 <testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-05-04T17:39:57 AEST" name="Default suite" finished-at="2023-05-04T17:40:02 AEST" duration-ms="4759">
+  <suite started-at="2023-05-05T08:43:58 AEST" name="Default suite" finished-at="2023-05-05T08:44:05 AEST" duration-ms="7589">
     <groups>
     </groups>
-    <test started-at="2023-05-04T17:39:57 AEST" name="Default test" finished-at="2023-05-04T17:40:02 AEST" duration-ms="4759">
+    <test started-at="2023-05-05T08:43:58 AEST" name="Default test" finished-at="2023-05-05T08:44:05 AEST" duration-ms="7589">
       <class name="EndtoEndvalidation.LoginValidation">
-        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:EndtoEndvalidation.LoginValidation@3c947bc5]" started-at="2023-05-04T17:39:57 AEST" name="beforeSuite" finished-at="2023-05-04T17:39:57 AEST" duration-ms="5" status="PASS">
+        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:EndtoEndvalidation.LoginValidation@318ba8c8]" started-at="2023-05-05T08:43:58 AEST" name="beforeSuite" finished-at="2023-05-05T08:43:58 AEST" duration-ms="15" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeSuite -->
-        <test-method is-config="true" signature="beforeTest()[pri:0, instance:EndtoEndvalidation.LoginValidation@3c947bc5]" started-at="2023-05-04T17:39:57 AEST" name="beforeTest" finished-at="2023-05-04T17:39:59 AEST" duration-ms="1632" status="PASS">
+        <test-method is-config="true" signature="beforeTest()[pri:0, instance:EndtoEndvalidation.LoginValidation@318ba8c8]" started-at="2023-05-05T08:43:58 AEST" name="beforeTest" finished-at="2023-05-05T08:44:01 AEST" duration-ms="3300" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method signature="VerifyTitle()[pri:1, instance:EndtoEndvalidation.LoginValidation@3c947bc5]" started-at="2023-05-04T17:39:59 AEST" name="VerifyTitle" finished-at="2023-05-04T17:40:00 AEST" duration-ms="1048" status="PASS">
+        <test-method signature="VerifyTitle()[pri:1, instance:EndtoEndvalidation.LoginValidation@318ba8c8]" started-at="2023-05-05T08:44:01 AEST" name="VerifyTitle" finished-at="2023-05-05T08:44:03 AEST" duration-ms="1557" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- VerifyTitle -->
-        <test-method signature="login()[pri:2, instance:EndtoEndvalidation.LoginValidation@3c947bc5]" started-at="2023-05-04T17:40:00 AEST" name="login" finished-at="2023-05-04T17:40:02 AEST" duration-ms="2047" status="PASS">
+        <test-method signature="login()[pri:2, instance:EndtoEndvalidation.LoginValidation@318ba8c8]" started-at="2023-05-05T08:44:03 AEST" name="login" finished-at="2023-05-05T08:44:05 AEST" duration-ms="2681" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- login -->

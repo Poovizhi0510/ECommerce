@@ -1,13 +1,19 @@
 package EndtoEndvalidation;
 
+import static org.testng.Assert.assertEquals;
+
+import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterClass;
@@ -24,67 +30,65 @@ import com.pages.EndtoEndvalidationpage;
 
 import utility.Library;
 
-public class EndtoEndvalidation  extends Library{
+public class EndtoEndvalidation extends Library {
 
-	
-	
-		
-		@Test(priority =1)
-		public void VerifyTitle() {
-			
-			driver.get(objProperties.getProperty("URL"));
-			PageLoadTimeOut();
-			String Title = driver.getTitle();
-			System.out.println("Title:"+Title);
-			Assert.assertEquals(Title,objProperties.getProperty("Title") );
-				
-		}
-		@Test(priority=2)
-		
-			public void EndToEnd()
-			{
-				
-				driver.findElement(EndtoEndvalidationpage.search).sendKeys("bike");
-				driver.findElement(EndtoEndvalidationpage.searchbtn).click();
-				List<WebElement> products = driver.findElements(EndtoEndvalidationpage.listofproduct);
-				System.out.println("product is"+products.get(1).getText());
-				String firstprd=products.get(1).getText();
-				driver.findElement(By.xpath("/html[1]/body[1]/div[5]/div[4]/div[2]/div[1]/div[2]/ul[1]/li[2]/div[1]/div[1]/div[1]/a[1]/div[1]")).click();
-		
-			    
-			    Set<String> allWindowHandles = driver.getWindowHandles();
-				 String mainwindow = driver.getWindowHandle();
-			        Set<String> s1 = driver.getWindowHandles();
-			        Iterator<String> i1 = s1.iterator();
-			        
-			        while (i1.hasNext()) {
-			            String ChildWindow = i1.next();
-			                if (!mainwindow.equalsIgnoreCase(ChildWindow)) {
-			                driver.switchTo().window(ChildWindow);
-			                }
-			        }
-			        Select se = new Select(driver.findElement(By.xpath("//*[@id='x-msku__select-box-1000']")));
-			        se.selectByValue("1");
-			        driver.findElement(By.xpath("//span[text()='Add to cart']")).click();
-			        
-			    	
+	@Test(priority = 1)
+	public void VerifyTitle() {
+
+		driver.get(objProperties.getProperty("URL"));
+		PageLoadTimeOut();
+		String Title = driver.getTitle();
+		System.out.println("Title:" + Title);
+		Assert.assertEquals(Title, objProperties.getProperty("Title"));
+
+	}
+
+	@Test(priority = 2)
+
+	public void EndToEnd() throws InterruptedException {
+
+		driver.findElement(EndtoEndvalidationpage.search).sendKeys("bike");
+		driver.findElement(EndtoEndvalidationpage.searchbtn).click();
+
+		String FirstPdt = driver.findElement(By.xpath("/html[1]/body[1]/div[5]/div[4]/div[2]/div[1]/div[2]/ul[1]/li[2]/div[1]/div[1]/div[1]/a[1]/div[1]/img")).getAttribute("alt");
+		System.out.println("The first product added to cart is  " + FirstPdt);
+		driver.findElement(By.xpath("/html[1]/body[1]/div[5]/div[4]/div[2]/div[1]/div[2]/ul[1]/li[2]/div[1]/div[1]/div[1]/a[1]/div[1]")).click();
+		String parentwindow = driver.getWindowHandle();
+		Set<String> wstr = driver.getWindowHandles();
+		Iterator<String> itr = wstr.iterator();
+
+		while (itr.hasNext()) {
+			String ChildWindow = itr.next();
+			if (!parentwindow.equalsIgnoreCase(ChildWindow)) {
+				driver.switchTo().window(ChildWindow);
 			}
-		
-		
-	
+		}
+		Select dropdown = new Select(driver.findElement(EndtoEndvalidationpage.addtocart));
+		dropdown.selectByIndex(1);
 
-		  @BeforeTest
-		  public void beforeTest() {
-			
-			  Library.LaunchBrowser();
-		  }
+		driver.findElement(By.xpath("//span[contains(text(),'Add to cart')]")).click();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		Thread.sleep(1000);
+		WebElement we = (WebElement) js.executeScript("return document.querySelector(\"#vas-interstitial-target-d\").shadowRoot.querySelector(\"#vas-spoke-container > div.bottom-ctas > div > button\")");
 
-		 		  @BeforeSuite
-		  public void beforeSuite() {
-			  System.out.println("inside beforeSuite");
-			  Library.ReadPropertiesFile();
-		  }
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", we);
+		String ProdcutinTheCart = driver.findElement(By.xpath(
+				"//*[@id=\"mainContent\"]/div/div[3]/div[1]/div[1]/div[1]/ul/li/div[1]/div/div/div[1]/div/div[1]/div/div/img"))
+				.getAttribute("alt");
+		System.out.println("The Product in The Cart is " + ProdcutinTheCart);
+		Assert.assertEquals(FirstPdt, ProdcutinTheCart);
+		driver.quit();
+	}
 
-				
-	
+	@BeforeTest
+	public void beforeTest() {
+
+		Library.LaunchBrowser();
+	}
+
+	@BeforeSuite
+	public void beforeSuite() {
+		Library.ReadPropertiesFile();
+	}
+
 }

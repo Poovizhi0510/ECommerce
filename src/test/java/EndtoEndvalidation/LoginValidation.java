@@ -27,9 +27,6 @@ import utility.Library;
 
 	public class LoginValidation   extends Library{
 
-		
-		
-			
 			@Test(priority =1)
 			public void VerifyTitle() {
 				
@@ -49,16 +46,8 @@ import utility.Library;
 					driver.findElement(loginpage.conID).click();
 					String ErrorMsg=driver.findElement(loginpage.Errormsg).getText();
 					Assert.assertEquals(ErrorMsg,objProperties.getProperty("ErrorMsg") );
-					
-					
-					
-
-				
 				}
 			
-			
-		
-
 			  @BeforeTest
 			  public void beforeTest() {
 				
@@ -67,7 +56,6 @@ import utility.Library;
 
 			 		  @BeforeSuite
 			  public void beforeSuite() {
-				  System.out.println("inside beforeSuite");
 				  Library.ReadPropertiesFile();
 			  }
 

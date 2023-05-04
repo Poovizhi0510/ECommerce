@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="EndtoEndvalidation.LoginValidation">
+      <class name="EndtoEndvalidation.EndtoEndvalidation">
         <methods>
           <include name="beforeSuite"/>
-          <include name="login"/>
           <include name="beforeTest"/>
+          <include name="EndToEnd"/>
         </methods>
-      </class> <!-- EndtoEndvalidation.LoginValidation -->
+      </class> <!-- EndtoEndvalidation.EndtoEndvalidation -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
